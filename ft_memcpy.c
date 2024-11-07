@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apavlopo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/07 13:39:18 by apavlopo          #+#    #+#             */
+/*   Updated: 2024/11/07 13:39:44 by apavlopo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <string.h>
 
-void    *ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	char		*d_str;
 	const char	*s_str;
@@ -15,11 +26,11 @@ void    *ft_memcpy(void *dest, const void *src, size_t n)
 		d_str[i] = s_str[i];
 		i++;
 	}
-    return (dest);
+	return (dest);
 }
 /*#include <stddef.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int	main(int argc, char **argv)
 {

@@ -1,15 +1,17 @@
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apavlopo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/07 13:38:09 by apavlopo          #+#    #+#             */
+/*   Updated: 2024/11/07 13:38:32 by apavlopo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	len;
-
-	len = 0;
-	while (str[len] != '\0')
-		len++;
-	return (len);
-}
+#include <stdlib.h>
 
 char	*populate_string(char *src)
 {
@@ -40,20 +42,17 @@ char	*string_edge_case(int n, int min, int max)
 		return (NULL);
 	if (n == min)
 	{
-		char *min_s = "-2147483648";
-		str_num = populate_string(min_s);
+		str_num = populate_string("-2147483648");
 		return (str_num);
 	}
 	else if (n == max)
 	{
-		char *max_s = "2147483647";
-		str_num = populate_string(max_s);
+		str_num = populate_string("2147483647");
 		return (str_num);
 	}
 	else if (n == 0)
 	{
-		str_num[i] = '0';
-		i++;
+		str_num[i++] = '0';
 		str_num[i] = '\0';
 		return (str_num);
 	}
@@ -95,6 +94,7 @@ char	*ft_itoa(int n)
 	char	*str_num;
 
 	start = 0;
+	str_len = 0;
 	min = -2147483648;
 	max = 2147483647;
 	if (n == min || n == max || n == 0)
@@ -107,7 +107,8 @@ char	*ft_itoa(int n)
 		start++;
 	}
 	str_num = integer_to_string(str_num, n, start);
-	str_len = ft_strlen(str_num);
+	while (str_num[str_len] != '\0')
+		str_len++;
 	str_num = reverse_string(str_num, str_len, start);
 	return (str_num);
 }
