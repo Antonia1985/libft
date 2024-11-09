@@ -45,7 +45,8 @@ int	main(int argc, char *argv[])
 			std_result = toupper(original);
 			custom_result = ft_toupper(original);
 			printf(
-                "Character: %c | Standard toupper: %c | Custom ft_toupper: %c\n", 
+                "Character: 
+				%c | Standard toupper: %c | Custom ft_toupper: %c\n", 
                 original, std_result, custom_result);
 		}
 		printf("\n");

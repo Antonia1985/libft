@@ -1,37 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apavlopo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 20:11:21 by apavlopo          #+#    #+#             */
-/*   Updated: 2024/11/07 20:13:33 by apavlopo         ###   ########.fr       */
+/*   Created: 2024/11/09 11:56:24 by apavlopo          #+#    #+#             */
+/*   Updated: 2024/11/09 11:57:00 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
 
-char	*ft_strchr(const char *s, int c)
+size_t	ft_strlen(const char *s)
+{
+	size_t	length;
+
+	length = 0;
+	while (s[length] != '\0')
+	{
+		length++;
+	}
+	return (length);
+}
+
+char	*ft_strrchr(const char *s, int c)
 {
 	size_t	i;
+	size_t	s_len;
 	char	ch;
 	char	*ptr;
 
 	i = 0;
 	ch = c;
-	while (s[i] != '\0')
+	s_len = ft_strlen(s);
+	while (s_len >= 0)
 	{
-		if (s[i] == ch)
+		if (s[s_len] == ch)
 		{
-			ptr = (char *)&s[i];
+			ptr = (char *)&s[s_len];
 			return (ptr);
 		}
-		i++;
-	}
-	if (c == '\0')
-	{
-		ptr = (char *)&s[i];
-		return (ptr);
+		if (s_len == 0)
+		{
+			return (NULL);
+		}
+		s_len--;
 	}
 	return (NULL);
 }
@@ -59,8 +72,8 @@ int	main(int argc, char *argv[])
 	search_char = argv[1][0];
 	for (int i = 2; i < argc; i++)
 	{
-		std_result = strchr(argv[i], search_char);
-		custom_result = ft_strchr(argv[i], search_char);
+		std_result = strrchr(argv[i], search_char);
+		custom_result = ft_strrchr(argv[i], search_char);
 		printf("String: \"%s\"\n", argv[i]);
 		printf("Standard strchr: %s\n", std_result ? std_result : "NULL");
 		printf("Custom ft_strchr: %s\n",

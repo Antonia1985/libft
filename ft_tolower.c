@@ -9,10 +9,9 @@
 /*   Updated: 2024/11/07 20:04:26 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-int ft_tolower(int c)
+int	ft_tolower(int c)
 {
-    if (c >= 65 && c <= 90)
+	if (c >= 65 && c <= 90)
 	{
 		c = c + 32;
 		return (c);
@@ -45,8 +44,8 @@ int	main(int argc, char *argv[])
 			std_result = tolower(original);
 			custom_result = ft_tolower(original);
 			printf(
-                "Character: %c | tolower: %c | ft_toupper: %c\n", 
-                original, std_result, custom_result);
+				"Character: %c | tolower: %c | ft_toupper: %c\n",
+				original, std_result, custom_result);
 		}
 		printf("\n");
 	}
