@@ -9,22 +9,9 @@
 /*   Updated: 2024/11/07 13:47:39 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <libft.h>
 
-#include <stdlib.h>
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	len;
-
-	len = 0;
-	while (str[len] != '\0')
-	{
-		len++;
-	}
-	return (len);
-}
-
-int	ft_is_in_set(char c, const char *set)
+static int	ft_is_in_set(char c, const char *set)
 {
 	while (*set)
 	{
@@ -35,7 +22,7 @@ int	ft_is_in_set(char c, const char *set)
 	return (0);
 }
 
-char	*populated_trimmed(char *trimmed, char const *start, size_t length)
+static char	*populated_trimmed(char *trimmed, char const *start, size_t length)
 {
 	size_t	i;
 

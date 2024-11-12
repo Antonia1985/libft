@@ -9,20 +9,7 @@
 /*   Updated: 2024/11/07 13:43:08 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdlib.h>
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	length;
-
-	length = 0;
-	while (s[length] != '\0')
-	{
-		length++;
-	}
-	return (length);
-}
+#include <libft.h>
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

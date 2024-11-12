@@ -9,6 +9,8 @@
 /*   Updated: 2024/10/22 19:23:21 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <libft.h>
+
 int	ft_isalnum(int c)
 {
 	unsigned int	result;

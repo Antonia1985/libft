@@ -9,11 +9,9 @@
 /*   Updated: 2024/11/07 16:24:59 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+#include <libft.h>
 
-void	ft_putnbr_fd(int n, int fd);
-
-void	ft_print_number(int n, int fd)
+static void	ft_print_number(int n, int fd)
 {
 	char	c;
 
@@ -58,8 +56,7 @@ void	ft_putnbr_fd(int n, int fd)
 		}
 	}
 }
-/*
-int	main(void)
+/*int	main(void)
 {
 	ft_putnbr_fd(570, 1);
 	write(1, "\n", 1);

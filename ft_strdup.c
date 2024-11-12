@@ -9,40 +9,19 @@
 /*   Updated: 2024/10/22 15:48:20 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//#include <unistd.h>
-#include <stdlib.h>
-
-void	ft_putstr_fd(char *s, int fd);
-/*{
-	if (s)
-	{
-		while (*s)
-		{
-			write(fd, s, 1);
-			s++;
-		}
-	}
-}*/
+#include <libft.h>
 
 char	*ft_strdup(char *src)
 {
 	int		i;
 	char	*dest;
-	char	*msg;
 
-	msg = "Memory not allocated.\n";
 	i = 0;
 	while (src[i] != '\0')
-	{
 		i++;
-	}
 	dest = (char *)malloc((i + 1) * sizeof(char));
 	if (dest == NULL)
-	{
-		ft_putstr_fd(msg, 1);
 		return (NULL);
-	}
 	i = 0;
 	while (src[i])
 	{

@@ -9,11 +9,9 @@
 /*   Updated: 2024/11/07 13:38:32 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <libft.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-
-char	*populate_string(char *src)
+static char	*populate_string(char *src)
 {
 	char	*dest;
 	size_t	i;
@@ -31,7 +29,7 @@ char	*populate_string(char *src)
 	return (dest);
 }
 
-char	*string_edge_case(int n, int min, int max)
+static char	*string_edge_case(int n, int min, int max)
 {
 	size_t	i;
 	char	*str_num;
@@ -59,7 +57,7 @@ char	*string_edge_case(int n, int min, int max)
 	return (str_num);
 }
 
-char	*integer_to_string(char *dest, int n, size_t i)
+static char	*integer_to_string(char *dest, int n, size_t i)
 {
 	while (n != 0)
 	{
@@ -71,7 +69,7 @@ char	*integer_to_string(char *dest, int n, size_t i)
 	return (dest);
 }
 
-char	*reverse_string(char *src, size_t str_len, size_t start)
+static char	*reverse_string(char *src, size_t str_len, size_t start)
 {
 	char	swap;
 

@@ -9,19 +9,7 @@
 /*   Updated: 2024/11/09 15:35:24 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <string.h>
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	length;
-
-	length = 0;
-	while (s[length] != '\0')
-	{
-		length++;
-	}
-	return (length);
-}
+#include <libft.h>
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
@@ -51,6 +39,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 /*
 #include <stdio.h>
 #include <stdlib.h>
+
 int	main(int argc, char *argv[])
 {
 	char	*custom_result;

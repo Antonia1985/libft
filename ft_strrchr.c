@@ -9,19 +9,7 @@
 /*   Updated: 2024/11/09 11:57:00 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	length;
-
-	length = 0;
-	while (s[length] != '\0')
-	{
-		length++;
-	}
-	return (length);
-}
+#include <libft.h>
 
 char	*ft_strrchr(const char *s, int c)
 {

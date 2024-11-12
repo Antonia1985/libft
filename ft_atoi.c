@@ -9,10 +9,9 @@
 /*   Updated: 2024/11/09 17:21:33 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <libft.h>
 
-#include <stdlib.h>
-
-int	ft_isspace(char c)
+static int	ft_isspace(char c)
 {
 	size_t	i;
 	char	*space_char;
