@@ -18,3 +18,19 @@ ARFLAGS = rcs
 
 SRC = $(wildcard ft_*.c)
 OBJ = $(SRC:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+    $(AR) $(ARFLAGS) $(NAME) $(OBJ)
+
+%.o: %.c libft.h
+    $(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+    rm -f $(OBJ)
+
+fclean: clean
+    rm -f $(NAME)	
+
+re: fclean all
