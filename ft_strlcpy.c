@@ -9,7 +9,7 @@
 /*   Updated: 2024/11/12 13:47:01 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft.h>
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
 {
@@ -20,7 +20,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
 	if (dstsize == 0)
 		return (s_len);
 	i = 0;
-	while (i < dstsize - 1)
+	while (i < dstsize - 1 && src[i] != '\0')
 	{
 		dest[i] = src[i];
 		i++;
@@ -28,8 +28,8 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
 	dest[i] = '\0';
 	return (s_len);
 }
-
-/*#include <stdio.h>
+/*
+#include <stdio.h>
 #include <stdlib.h>
 
 //#include "ft_strlcpy.h"  // Include your custom strlcpy header

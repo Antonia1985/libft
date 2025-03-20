@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apavlopo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 15:59:50 by apavlopo          #+#    #+#             */
-/*   Updated: 2024/11/07 16:06:20 by apavlopo         ###   ########.fr       */
+/*   Created: 2024/12/05 15:35:53 by apavlopo          #+#    #+#             */
+/*   Updated: 2024/12/05 15:36:19 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	ft_putstr(char *s, int *counter)
 {
+	int	len;
+
 	if (s)
 	{
-		while (*s)
-		{
-			write(fd, s, 1);
-			s++;
-		}
-		write(fd, "\n", 1);
+		len = 0;
+		while (s[len])
+			len++;
+		write(1, s, len);
+		*counter += len;
+	}
+	else
+	{
+		write(1, "(null)", 6);
+		*counter += 6;
+		return ;
 	}
 }
-/*/
-int	main(int argc, char *argv[])
-{
-	int	i;
-	char	*s;
-	i = 1;
-	while(i < argc)
-	{
-		s = argv[i];
-		ft_putendl_fd(s, 1);
-		i++;
-	}
-	return (0);
-}*/

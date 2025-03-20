@@ -5,107 +5,70 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: apavlopo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 18:42:29 by apavlopo          #+#    #+#             */
-/*   Updated: 2024/11/12 18:42:47 by apavlopo         ###   ########.fr       */
+/*   Created: 2024/11/16 19:16:11 by apavlopo          #+#    #+#             */
+/*   Updated: 2024/11/16 19:16:16 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft.h>
+#include "libft.h"
 
-static size_t	count_segments(const char *s, char c)
+static int	count_words(const char *s, char c)
 {
-	size_t	count;
-	int		in_segment;
-	size_t	i;
+	int	count;
+	int	in_word;
 
 	count = 0;
-	in_segment = 0;
-	i = 0;
-	while (s[i] != '\0')
+	in_word = 0;
+	while (*s)
 	{
-		if (s[i] != c && in_segment == 0)
+		if (*s == c)
+			in_word = 0;
+		else if (!in_word)
 		{
-			in_segment = 1;
+			in_word = 1;
 			count++;
 		}
-		else if (s[i] == c)
-			in_segment = 0;
-		i++;
+		s++;
 	}
 	return (count);
 }
 
-static char	*allocate_segment(const char *s, size_t start, size_t end)
+static char	*get_next_word(const char **s, char delimiter)
 {
-	char	*segment;
-	size_t	i;
+	const char	*start;
+	char		*word;
+	size_t		len;
 
-	segment = (char *)malloc((end - start + 1) * sizeof(char));
-	if (!segment)
+	while (**s == delimiter)
+		(*s)++;
+	if (**s == '\0')
+		return (ft_strdup(""));
+	start = *s;
+	while (**s && **s != delimiter)
+		(*s)++;
+	len = *s - start;
+	word = (char *)malloc(len + 1);
+	if (!word)
 		return (NULL);
-	i = 0;
-	while (start < end)
-	{
-		segment[i] = s[start];
-		start++;
-		i++;
-	}
-	segment[i] = '\0';
-	return (segment);
-}
-
-static void	free_segments(char **segments)
-{
-	size_t	i;
-
-	i = 0;
-	while (segments[i])
-	{
-		free(segments[i]);
-		i++;
-	}
-	free(segments);
-}
-
-static char	**create_segments(const char *s, char c, size_t segment_count)
-{
-	char	**segments;
-	size_t	i;
-	size_t	seg_idx;
-	size_t	start;
-
-	segments = (char **)malloc((segment_count + 1) * sizeof(char *));
-	if (!segments)
-		return (NULL);
-	i = 0;
-	seg_idx = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] != c)
-		{
-			start = i;
-			while (s[i] != '\0' && s[i] != c)
-				i++;
-			segments[seg_idx] = allocate_segment(s, start, i);
-			if (!segments[seg_idx])
-			{
-				free_segments(segments);
-				return (NULL);
-			}
-			seg_idx++;
-		}
-		else
-			i++;
-	}
-	segments[seg_idx] = NULL;
-	return (segments);
+	ft_strlcpy(word, start, len + 1);
+	return (word);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	segment_count;
+	int		words;
+	char	**result;
+	int		i;
 
-	if (!s)
+	words = count_words(s, c);
+	result = malloc((words + 1) * sizeof(char *));
+	if (!result)
 		return (NULL);
-	segment_count = count_segments(s, c);
-	return (create_segments(s, c, segment_count));
+	i = 0;
+	while (i < words)
+	{
+		result[i] = get_next_word(&s, c);
+		i++;
+	}
+	result[i] = NULL;
+	return (result);
 }

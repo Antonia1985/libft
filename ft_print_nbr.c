@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_print_nbr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apavlopo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 15:59:50 by apavlopo          #+#    #+#             */
-/*   Updated: 2024/11/07 16:06:20 by apavlopo         ###   ########.fr       */
+/*   Created: 2024/12/05 15:26:11 by apavlopo          #+#    #+#             */
+/*   Updated: 2024/12/05 15:26:28 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	ft_print_nbr(int n, int *counter)
 {
-	if (s)
+	char	c;
+
+	if (n == -2147483648)
+		ft_putstr("-2147483648", counter);
+	else if (n == 0)
+		ft_putchar('0', counter);
+	else
 	{
-		while (*s)
+		c = '\0';
+		if (n < 0)
 		{
-			write(fd, s, 1);
-			s++;
+			ft_putchar('-', counter);
+			n = -n;
 		}
-		write(fd, "\n", 1);
+		if ((n / 10) != 0)
+			ft_print_nbr(n / 10, counter);
+		c = '0' + (n % 10);
+		ft_putchar(c, counter);
 	}
 }
-/*/
-int	main(int argc, char *argv[])
-{
-	int	i;
-	char	*s;
-	i = 1;
-	while(i < argc)
-	{
-		s = argv[i];
-		ft_putendl_fd(s, 1);
-		i++;
-	}
-	return (0);
-}*/

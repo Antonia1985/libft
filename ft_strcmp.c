@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apavlopo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 15:59:50 by apavlopo          #+#    #+#             */
-/*   Updated: 2024/11/07 16:06:20 by apavlopo         ###   ########.fr       */
+/*   Created: 2025/01/25 18:54:01 by apavlopo          #+#    #+#             */
+/*   Updated: 2025/01/25 18:54:07 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	if (s)
+	size_t	i;
+	int		diff;
+
+	i = 0;
+	diff = 0;
+	while (s1[i] != '\0' || s2[i] != '\0')
 	{
-		while (*s)
+		if (s1[i] != s2[i])
 		{
-			write(fd, s, 1);
-			s++;
+			diff = s1[i] - s2[i];
+			return (diff);
 		}
-		write(fd, "\n", 1);
-	}
-}
-/*/
-int	main(int argc, char *argv[])
-{
-	int	i;
-	char	*s;
-	i = 1;
-	while(i < argc)
-	{
-		s = argv[i];
-		ft_putendl_fd(s, 1);
 		i++;
 	}
-	return (0);
-}*/
+	return (diff);
+}

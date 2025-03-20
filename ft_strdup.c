@@ -9,7 +9,7 @@
 /*   Updated: 2024/10/22 15:48:20 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft.h>
+#include "libft.h"
 
 char	*ft_strdup(char *src)
 {
@@ -31,16 +31,3 @@ char	*ft_strdup(char *src)
 	dest[i] = '\0';
 	return (dest);
 }
-/*int	main(int argc, char **argv)
-{
-	(void)argc;
-	char *dest = ft_strdup(argv[1]);
-	ft_putstr_fd(dest, 1);
-
-	if (&argv[1] != NULL)
-	{
-		free(dest);
-	}
-
-	return (0);
-}*/

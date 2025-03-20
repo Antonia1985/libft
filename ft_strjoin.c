@@ -9,33 +9,41 @@
 /*   Updated: 2024/11/07 13:43:08 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft.h>
+#include "libft.h"
+
+static void	populate_joined(char *joined, const char *s, size_t s_len,
+		size_t start)
+{
+	size_t	j;
+
+	j = 0;
+	while (j < s_len)
+	{
+		joined[start + j] = s[j];
+		j++;
+	}
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
 	size_t	len1;
 	size_t	len2;
 	size_t	len;
 	char	*joined;
 
-	i = 0;
+	if (s1 == NULL)
+		len1 = 0;
+	if (s2 == NULL)
+		len2 = 0;
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	len = len1 + len2 + 1;
 	joined = (char *)malloc(len);
-	while (i < len1)
-	{
-		joined[i] = s1[i];
-		i++;
-	}
-	i = 0;
-	while (i < len2)
-	{
-		joined[len1 + i] = s2[i];
-		i++;
-	}
-	joined[len] = '\0';
+	if (!joined)
+		return (NULL);
+	populate_joined(joined, s1, len1, 0);
+	populate_joined(joined, s2, len2, len1);
+	joined[len - 1] = '\0';
 	return (joined);
 }
 /*#include <stdio.h>

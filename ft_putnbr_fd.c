@@ -9,7 +9,7 @@
 /*   Updated: 2024/11/07 16:24:59 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft.h>
+#include "libft.h"
 
 static void	ft_print_number(int n, int fd)
 {

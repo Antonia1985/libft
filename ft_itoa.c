@@ -9,14 +9,12 @@
 /*   Updated: 2024/11/07 13:38:32 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft.h>
+#include "libft.h"
 
-static char	*populate_string(char *src)
+static char	*populate_string(char *dest, char *src)
 {
-	char	*dest;
 	size_t	i;
 
-	dest = (char *)malloc(12);
 	if (!dest)
 		return (NULL);
 	i = 0;
@@ -35,30 +33,45 @@ static char	*string_edge_case(int n, int min, int max)
 	char	*str_num;
 
 	i = 0;
-	str_num = (char *)malloc(12);
-	if (!str_num)
-		return (NULL);
 	if (n == min)
 	{
-		str_num = populate_string("-2147483648");
-		return (str_num);
+		str_num = (char *)malloc(12);
+		return (populate_string(str_num, "-2147483648"));
 	}
 	else if (n == max)
 	{
-		str_num = populate_string("2147483647");
-		return (str_num);
+		str_num = (char *)malloc(11);
+		return (populate_string(str_num, "2147483647"));
 	}
 	else if (n == 0)
 	{
+		str_num = (char *)malloc(2);
 		str_num[i++] = '0';
 		str_num[i] = '\0';
 		return (str_num);
 	}
-	return (str_num);
+	return (NULL);
 }
 
-static char	*integer_to_string(char *dest, int n, size_t i)
+static int	length_from_integer(int n)
 {
+	size_t	i;
+
+	i = 0;
+	while (n != 0)
+	{
+		n = n / 10;
+		i++;
+	}
+	return (i);
+}
+
+static char	*integer_to_string(char *dest, int n, size_t start, size_t str_len)
+{
+	size_t	i;
+	char	swap;
+
+	i = start;
 	while (n != 0)
 	{
 		dest[i] = (n % 10) + '0';
@@ -66,51 +79,46 @@ static char	*integer_to_string(char *dest, int n, size_t i)
 		i++;
 	}
 	dest[i] = '\0';
-	return (dest);
-}
-
-static char	*reverse_string(char *src, size_t str_len, size_t start)
-{
-	char	swap;
-
 	while (start < (str_len + start) / 2)
 	{
-		swap = src[start];
-		src[start] = src[str_len - 1 - start];
-		src[str_len - start - 1] = swap;
+		swap = dest[start];
+		dest[start] = dest[str_len - 1];
+		dest[str_len - 1] = swap;
 		start++;
+		str_len--;
 	}
-	return (src);
+	return (dest);
 }
 
 char	*ft_itoa(int n)
 {
 	size_t	start;
 	size_t	str_len;
-	int		min;
-	int		max;
 	char	*str_num;
+	char	sign;
 
+	sign = '+';
 	start = 0;
 	str_len = 0;
-	min = -2147483648;
-	max = 2147483647;
-	if (n == min || n == max || n == 0)
-		return (string_edge_case(n, min, max));
-	str_num = (char *)malloc(12);
+	if (n == -2147483648 || n == 2147483647 || n == 0)
+		return (string_edge_case(n, -2147483648, 2147483647));
 	if (n < 0)
 	{
-		str_num[start] = '-';
+		sign = '-';
 		n = -n;
 		start++;
 	}
-	str_num = integer_to_string(str_num, n, start);
-	while (str_num[str_len] != '\0')
+	str_len = length_from_integer(n);
+	if (sign == '-')
 		str_len++;
-	str_num = reverse_string(str_num, str_len, start);
+	str_num = (char *)malloc(str_len + 1);
+	str_num = integer_to_string(str_num, n, start, str_len);
+	if (sign == '-')
+		str_num[0] = sign;
 	return (str_num);
 }
-/*int	main(void)
+/*
+int	main(void)
 {
 	printf("%s\n", ft_itoa(-2147483648)); // Prints "-2147483648"
 	printf("%s\n", ft_itoa(2147483647));  // Prints "2147483647"

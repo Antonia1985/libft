@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apavlopo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 15:59:50 by apavlopo          #+#    #+#             */
-/*   Updated: 2024/11/07 16:06:20 by apavlopo         ###   ########.fr       */
+/*   Created: 2025/02/27 15:57:52 by apavlopo          #+#    #+#             */
+/*   Updated: 2025/02/27 16:02:02 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 {
-	if (s)
+	void	*new_ptr;
+	size_t	i;
+
+	if (new_size == 0)
 	{
-		while (*s)
-		{
-			write(fd, s, 1);
-			s++;
-		}
-		write(fd, "\n", 1);
+		free(ptr);
+		return (NULL);
 	}
-}
-/*/
-int	main(int argc, char *argv[])
-{
-	int	i;
-	char	*s;
-	i = 1;
-	while(i < argc)
+	if (!ptr)
+		return (malloc(new_size));
+	if (new_size <= old_size)
+		return (ptr);
+	new_ptr = malloc(new_size);
+	if (!new_ptr)
+		return (NULL);
+	i = 0;
+	while (i < old_size)
 	{
-		s = argv[i];
-		ft_putendl_fd(s, 1);
+		((unsigned char *)new_ptr)[i] = ((unsigned char *)ptr)[i];
 		i++;
 	}
-	return (0);
-}*/
+	free(ptr);
+	return (new_ptr);
+}

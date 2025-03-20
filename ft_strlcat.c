@@ -9,22 +9,23 @@
 /*   Updated: 2024/11/12 13:48:03 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft.h>
+#include "libft.h"
 
 size_t	ft_strlcat(char *dest, const char *src, size_t destsize)
 {
 	size_t	s_len;
 	size_t	d_len;
-	size_t	total_len;
+	size_t	result;
 	size_t	i;
 
 	s_len = ft_strlen(src);
 	d_len = ft_strlen(dest);
-	total_len = d_len + s_len;
+	result = d_len + s_len;
 	i = 0;
 	if (destsize <= d_len)
 	{
-		return (total_len);
+		result = destsize + s_len;
+		return (result);
 	}
 	while (src[i] != '\0' && (d_len + i) < destsize - 1)
 	{
@@ -32,7 +33,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t destsize)
 		i++;
 	}
 	dest[d_len + i] = '\0';
-	return (total_len);
+	return (result);
 }
 /*
 #include <stdio.h>

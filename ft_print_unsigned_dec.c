@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   print_unsigned_dec.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apavlopo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 15:59:50 by apavlopo          #+#    #+#             */
-/*   Updated: 2024/11/07 16:06:20 by apavlopo         ###   ########.fr       */
+/*   Created: 2024/12/05 15:26:49 by apavlopo          #+#    #+#             */
+/*   Updated: 2024/12/05 15:33:03 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	ft_print_unsigned_dec(unsigned int n, int *counter)
 {
-	if (s)
+	char			c;
+	unsigned int	max;
+
+	max = 4294967295;
+	if (n == max)
+		ft_putstr("4294967295", counter);
+	else if (n == 0)
+		ft_putchar('0', counter);
+	else
 	{
-		while (*s)
-		{
-			write(fd, s, 1);
-			s++;
-		}
-		write(fd, "\n", 1);
+		c = '\0';
+		if ((n / 10) != 0)
+			ft_print_unsigned_dec(n / 10, counter);
+		c = '0' + (n % 10);
+		ft_putchar(c, counter);
 	}
 }
-/*/
-int	main(int argc, char *argv[])
-{
-	int	i;
-	char	*s;
-	i = 1;
-	while(i < argc)
-	{
-		s = argv[i];
-		ft_putendl_fd(s, 1);
-		i++;
-	}
-	return (0);
-}*/

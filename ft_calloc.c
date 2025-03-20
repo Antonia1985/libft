@@ -9,7 +9,7 @@
 /*   Updated: 2024/11/12 13:53:27 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft.h>
+#include "libft.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
@@ -17,6 +17,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	char	*buffer;
 
 	actual_size = nmemb * size;
+	if (size != 0 && actual_size / size != nmemb)
+		return (NULL);
 	buffer = (char *)malloc(nmemb * size);
 	if (buffer == NULL)
 	{

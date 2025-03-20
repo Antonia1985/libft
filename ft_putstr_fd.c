@@ -9,7 +9,7 @@
 /*   Updated: 2024/10/22 15:47:15 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft.h>
+#include "libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {
@@ -22,18 +22,3 @@ void	ft_putstr_fd(char *s, int fd)
 		}
 	}
 }
-/*int	main(int argc, char *argv[])
-{
-	int	i;
-	char	*s;
-	//char	*n = "\n";
-	i = 1;
-	while(i < argc)
-	{
-		s = argv[i];
-		ft_putstr_fd(s, 1);
-		//ft_putstr_fd(n, 1);
-		i++;
-	}
-	return (0);
-}*/

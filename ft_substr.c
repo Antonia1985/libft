@@ -9,7 +9,7 @@
 /*   Updated: 2024/11/07 13:50:07 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft.h>
+#include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -18,22 +18,26 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*substr;
 
 	i = 0;
-	src_l = ft_strlen(s);
-	if (!s || (start >= src_l))
+	if (!s)
 		return (NULL);
+	src_l = ft_strlen(s);
+	if (start >= src_l)
+	{
+		substr = malloc(1);
+		substr[0] = '\0';
+		return (substr);
+	}
 	if (src_l < (start + len))
 		len = src_l - start;
 	substr = (char *)malloc(len + 1);
 	if (substr == NULL)
 		return (NULL);
 	while (i < len)
-	{
-		substr[i] = s[start];
-		i++;
-		start++;
-	}
+		substr[i++] = s[start++];
+	substr[i] = '\0';
 	return (substr);
 }
+
 /*#include <stdio.h>
 #include <stdlib.h>  // For strtoul
 

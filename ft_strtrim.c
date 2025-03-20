@@ -9,7 +9,7 @@
 /*   Updated: 2024/11/07 13:47:39 by apavlopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft.h>
+#include "libft.h"
 
 static int	ft_is_in_set(char c, const char *set)
 {
